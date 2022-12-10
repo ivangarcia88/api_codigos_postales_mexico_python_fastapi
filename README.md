@@ -12,8 +12,8 @@ Para una mejor experiencia, se sugiere instalar venv o Anaconda (https://www.ana
 **Anaconda**
 
 ```plaintext
-conda create -n mpostalcode python=3.10
-conda activate mpostalcode
+conda create -n apipostalcode python=3.10
+conda activate apipostalcode
 ```
 Los requerimentos se encuentran en el archivo _requirements.txt_ el cual se puede ejecutar de la siguiente manera
 

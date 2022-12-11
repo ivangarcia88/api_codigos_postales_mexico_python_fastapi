@@ -18,10 +18,25 @@ fake_users_db = {
         "username": "juan",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": '$2b$12$91tN.ua6NatSL6csjPVq6epAQoYQYRCfHi4dh95pbB9530e5jkHF.', #123
+        "hashed_password": '$2b$12$91tN.ua6NatSL6csjPVq6epAQoYQYRCfHi4dh95pbB9530e5jkHF.', #password: 123
         "disabled": False,
     }
 }
+
+tags_metadata = [
+    {
+        "name": "login",
+        "description": "Login to use endpoint password/code, (user: juan, password:123)."
+    },
+    {
+        "name": "code",
+        "description": "Get information about a postal code (México), doesn't requiere authentication"
+    },
+    {
+        "name": "code_password",
+        "description": "Get information about a postal code (México), requieres authentication."
+    }
+]
 
 class Token(BaseModel):
     access_token: str
@@ -49,8 +64,7 @@ postal_code_database = json.loads(data)
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-app = FastAPI()
-
+app = FastAPI(openapi_tags=tags_metadata)
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -112,7 +126,7 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
     return current_user
 
 
-@app.post("/token", response_model=Token)
+@app.post("/token", response_model=Token, tags=["login"])
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
@@ -127,23 +141,16 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-
-@app.get("/users/me/", response_model=User)
-async def read_users_me(current_user: User = Depends(get_current_active_user)):
-    return current_user
-
-
-@app.get("/users/me/items/")
-async def read_own_items(current_user: User = Depends(get_current_active_user)):
-    return [{"item_id": "Foo", "owner": current_user.username}]
-
-@app.get("/hello")
-async def hello(current_user: User = Depends(get_current_active_user)):
-    return {"message":"Hello World"}
-
-
-@app.get("/code/{postal_code}",)
+@app.get("/code/{postal_code}", tags=["code"])
 async def get_info(postal_code):
+    global postal_code_database
+    if postal_code in postal_code_database["codigos_postales"]:
+        return postal_code_database["codigos_postales"][postal_code]
+    else:
+        return {"message:": f"El código postal {postal_code} no existe"}
+
+@app.get("/password/code/{postal_code}", tags=["code_password"])
+async def get_info(postal_code, current_user: User = Depends(get_current_active_user)):
     global postal_code_database
     if postal_code in postal_code_database["codigos_postales"]:
         return postal_code_database["codigos_postales"][postal_code]

@@ -20,3 +20,9 @@ Los requerimentos se encuentran en el archivo _requirements.txt_ el cual se pued
 ```plaintext
 pip install -r requirements.txt
 ```
+
+Para iniciar el servicio, se recomienda emplear uvicorn
+
+```plaintext
+uvicorn main:app --reload
+```

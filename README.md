@@ -18,9 +18,8 @@ https://codigos-postales-fastapi.onrender.com/docs
 
 La información fue transformada a un archivo JSON mediante un script, el código para este proceso se encuentra en: 
 
-[https://github.com/ivangarcia88/api_codigos_postales_mexico]
-(https://github.com/ivangarcia88/api_codigos_postales_mexico)
-
+[https://github.com/ivangarcia88/mexican_postal_code_reformat]
+(https://github.com/ivangarcia88/mexican_postal_code_reformat)
 
 # Instalación
 

@@ -1,6 +1,6 @@
 import sys
 import json
-import uvicorn
+#import uvicorn
 from datetime import timedelta
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
@@ -60,5 +60,5 @@ async def get_info(postal_code, current_user: ma.User = Depends(ma.get_current_a
     else:
         return {"message:": f"El código postal {postal_code} no existe"}
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+#if __name__ == "__main__":
+#    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,4 +1,6 @@
-> API desarrollada en Python (FastAPI) para consultar colonia, municipio y estado sobre un código postal.
+# Introducción
+
+API desarrollada en Python (FastAPI) para consultar colonia, municipio y estado sobre un código postal.
 
 **Ejemplo del funcionamiento de la API**
 
@@ -10,13 +12,17 @@ https://codigos-postales-fastapi.onrender.com/docs
 
 
 
-Esta API emplea información provista por el sitio oficial:
+**Esta API emplea información provista por el sitio oficial:**
 
 [https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx](https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx)
 
-Esta información fue transformada a un archivo JSON mediante un script, el código para transformar y actualizar la base de datos se encuentra en: 
-https://github.com/ivangarcia88/api_codigos_postales_mexico
+La información fue transformada a un archivo JSON mediante un script, el código para este proceso se encuentra en: 
 
+[https://github.com/ivangarcia88/api_codigos_postales_mexico]
+(https://github.com/ivangarcia88/api_codigos_postales_mexico)
+
+
+# Instalación
 
 
 Para una mejor experiencia, se sugiere instalar venv o Anaconda (https://www.anaconda.com/) y crear un entorno virtual.

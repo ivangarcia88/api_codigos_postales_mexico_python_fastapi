@@ -2,7 +2,8 @@
 
 API desarrollada en Python (FastAPI) para consultar colonia, municipio y estado sobre un código postal.
 
-**Ejemplo del funcionamiento de la API** (Sometimes it takes like 30 seconds to wake up the API).
+**Ejemplo del funcionamiento de la API** 
+> Sometimes it takes like 30 seconds to wake up the API.
 
 [https://codigos-postales-fastapi.onrender.com/code/45070]( https://codigos-postales-fastapi.onrender.com/code/45070)
 
